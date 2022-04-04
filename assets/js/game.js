@@ -9,11 +9,11 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
-var enemyHealth = 50;
+var enemyHealth = 50
 var enemyAttack = 12;
 var enemyMoney = 10
-var randomNumber = function() {
-  var value = Math.floor(Math.random() * 21) + 40;
+var randomNumber = function(40, 60) {
+  var value = Math.floor(Math.random() * (21)) + 40;
 
   return value;
 };
@@ -24,7 +24,7 @@ var startGame = function() {
         playerHealth = 100;
         playerAttack = 10;
         playerMoney = 10
-        enemyHealth = randomNumber();
+        enemyHealth = randomNumber(40, 60);
         enemyAttack = 12;
         enemyMoney = 10
 
@@ -62,13 +62,12 @@ var startGame = function() {
       else {
           window.alert("You have lost your robot in battle! Game Over!");
           break;
-      }
     };
     
     var pickedEnemyName = enemyNames[i];
-        enemyHealth = 50;
+          enemyHealth = 50;
     fight (pickedEnemyName);
-    }
+  }
 
 
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
@@ -94,7 +93,10 @@ var startGame = function() {
         
       
           // remove enemy's health by subtracting the amount set in the playerAttack variable
-          enemyHealth = Math.max(0, enemyHealth - playerAttack);
+          // generate random damage value based on player's attack power
+          var damage = randomNumber(playerAttack - 3, playerAttack);
+      
+          enemyHealth = Math.max(0, enemyHealth - damage);
           console.log(
             playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
           );
